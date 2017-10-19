@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Statistics Service API
+Statistics Service
 
-Statistics API
+Statistics Service
 
-OpenAPI spec version: 9.0.000.00.333
+OpenAPI spec version: 9.0.000.00.dev
 
 -->
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -12,7 +12,7 @@ OpenAPI spec version: 9.0.000.00.333
     
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{975A8642-294E-4D5B-B1B8-A301F56CFDB4}</ProjectGuid>
+    <ProjectGuid>{C1C9AFD5-B7FD-46DA-97BA-3E38BE4C1724}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Genesys.Statistics</RootNamespace>

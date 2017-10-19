@@ -25,41 +25,38 @@ using SwaggerDateConverter = Genesys.Statistics.Client.SwaggerDateConverter;
 namespace Genesys.Statistics.Model
 {
     /// <summary>
-    /// ApiResponseStatus
+    /// PeekedStatistic
     /// </summary>
     [DataContract]
-    public partial class ApiResponseStatus :  IEquatable<ApiResponseStatus>, IValidatableObject
+    public partial class PeekedStatistic :  IEquatable<PeekedStatistic>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ApiResponseStatus" /> class.
+        /// Initializes a new instance of the <see cref="PeekedStatistic" /> class.
         /// </summary>
-        /// <param name="Code">Code.</param>
-        /// <param name="Detail">Detail.</param>
-        /// <param name="Message">Message.</param>
-        public ApiResponseStatus(int? Code = default(int?), Object Detail = default(Object), string Message = default(string))
+        [JsonConstructorAttribute]
+        protected PeekedStatistic() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PeekedStatistic" /> class.
+        /// </summary>
+        /// <param name="Statistic">Statistic (required).</param>
+        public PeekedStatistic(PeekedStatisticValue Statistic = default(PeekedStatisticValue))
         {
-            this.Code = Code;
-            this.Detail = Detail;
-            this.Message = Message;
+            // to ensure "Statistic" is required (not null)
+            if (Statistic == null)
+            {
+                throw new InvalidDataException("Statistic is a required property for PeekedStatistic and cannot be null");
+            }
+            else
+            {
+                this.Statistic = Statistic;
+            }
         }
         
         /// <summary>
-        /// Gets or Sets Code
+        /// Gets or Sets Statistic
         /// </summary>
-        [DataMember(Name="code", EmitDefaultValue=false)]
-        public int? Code { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Detail
-        /// </summary>
-        [DataMember(Name="detail", EmitDefaultValue=false)]
-        public Object Detail { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Message
-        /// </summary>
-        [DataMember(Name="message", EmitDefaultValue=false)]
-        public string Message { get; set; }
+        [DataMember(Name="statistic", EmitDefaultValue=false)]
+        public PeekedStatisticValue Statistic { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -68,10 +65,8 @@ namespace Genesys.Statistics.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class ApiResponseStatus {\n");
-            sb.Append("  Code: ").Append(Code).Append("\n");
-            sb.Append("  Detail: ").Append(Detail).Append("\n");
-            sb.Append("  Message: ").Append(Message).Append("\n");
+            sb.Append("class PeekedStatistic {\n");
+            sb.Append("  Statistic: ").Append(Statistic).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -93,15 +88,15 @@ namespace Genesys.Statistics.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as ApiResponseStatus);
+            return this.Equals(obj as PeekedStatistic);
         }
 
         /// <summary>
-        /// Returns true if ApiResponseStatus instances are equal
+        /// Returns true if PeekedStatistic instances are equal
         /// </summary>
-        /// <param name="other">Instance of ApiResponseStatus to be compared</param>
+        /// <param name="other">Instance of PeekedStatistic to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ApiResponseStatus other)
+        public bool Equals(PeekedStatistic other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -109,19 +104,9 @@ namespace Genesys.Statistics.Model
 
             return 
                 (
-                    this.Code == other.Code ||
-                    this.Code != null &&
-                    this.Code.Equals(other.Code)
-                ) && 
-                (
-                    this.Detail == other.Detail ||
-                    this.Detail != null &&
-                    this.Detail.Equals(other.Detail)
-                ) && 
-                (
-                    this.Message == other.Message ||
-                    this.Message != null &&
-                    this.Message.Equals(other.Message)
+                    this.Statistic == other.Statistic ||
+                    this.Statistic != null &&
+                    this.Statistic.Equals(other.Statistic)
                 );
         }
 
@@ -136,12 +121,8 @@ namespace Genesys.Statistics.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.Code != null)
-                    hash = hash * 59 + this.Code.GetHashCode();
-                if (this.Detail != null)
-                    hash = hash * 59 + this.Detail.GetHashCode();
-                if (this.Message != null)
-                    hash = hash * 59 + this.Message.GetHashCode();
+                if (this.Statistic != null)
+                    hash = hash * 59 + this.Statistic.GetHashCode();
                 return hash;
             }
         }

@@ -25,29 +25,29 @@ using SwaggerDateConverter = Genesys.Statistics.Client.SwaggerDateConverter;
 namespace Genesys.Statistics.Model
 {
     /// <summary>
-    /// ApiResponse
+    /// PeekedStatisticResponse
     /// </summary>
     [DataContract]
-    public partial class ApiResponse :  IEquatable<ApiResponse>, IValidatableObject
+    public partial class PeekedStatisticResponse :  IEquatable<PeekedStatisticResponse>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ApiResponse" /> class.
+        /// Initializes a new instance of the <see cref="PeekedStatisticResponse" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected ApiResponse() { }
+        protected PeekedStatisticResponse() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="ApiResponse" /> class.
+        /// Initializes a new instance of the <see cref="PeekedStatisticResponse" /> class.
         /// </summary>
         /// <param name="Data">Data.</param>
         /// <param name="Errors">Errors.</param>
         /// <param name="Path">Path.</param>
         /// <param name="Status">Status (required).</param>
-        public ApiResponse(Object Data = default(Object), List<ApiResponse> Errors = default(List<ApiResponse>), string Path = default(string), ApiResponseStatus Status = default(ApiResponseStatus))
+        public PeekedStatisticResponse(PeekedStatistic Data = default(PeekedStatistic), List<ApiResponse> Errors = default(List<ApiResponse>), string Path = default(string), ApiResponseStatus Status = default(ApiResponseStatus))
         {
             // to ensure "Status" is required (not null)
             if (Status == null)
             {
-                throw new InvalidDataException("Status is a required property for ApiResponse and cannot be null");
+                throw new InvalidDataException("Status is a required property for PeekedStatisticResponse and cannot be null");
             }
             else
             {
@@ -62,7 +62,7 @@ namespace Genesys.Statistics.Model
         /// Gets or Sets Data
         /// </summary>
         [DataMember(Name="data", EmitDefaultValue=false)]
-        public Object Data { get; set; }
+        public PeekedStatistic Data { get; set; }
 
         /// <summary>
         /// Gets or Sets Errors
@@ -89,7 +89,7 @@ namespace Genesys.Statistics.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class ApiResponse {\n");
+            sb.Append("class PeekedStatisticResponse {\n");
             sb.Append("  Data: ").Append(Data).Append("\n");
             sb.Append("  Errors: ").Append(Errors).Append("\n");
             sb.Append("  Path: ").Append(Path).Append("\n");
@@ -115,15 +115,15 @@ namespace Genesys.Statistics.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as ApiResponse);
+            return this.Equals(obj as PeekedStatisticResponse);
         }
 
         /// <summary>
-        /// Returns true if ApiResponse instances are equal
+        /// Returns true if PeekedStatisticResponse instances are equal
         /// </summary>
-        /// <param name="other">Instance of ApiResponse to be compared</param>
+        /// <param name="other">Instance of PeekedStatisticResponse to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ApiResponse other)
+        public bool Equals(PeekedStatisticResponse other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)

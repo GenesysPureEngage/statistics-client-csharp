@@ -25,62 +25,62 @@ using SwaggerDateConverter = Genesys.Statistics.Client.SwaggerDateConverter;
 namespace Genesys.Statistics.Model
 {
     /// <summary>
-    /// ApiResponse
+    /// StatisticData
     /// </summary>
     [DataContract]
-    public partial class ApiResponse :  IEquatable<ApiResponse>, IValidatableObject
+    public partial class StatisticData :  IEquatable<StatisticData>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ApiResponse" /> class.
+        /// Initializes a new instance of the <see cref="StatisticData" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected ApiResponse() { }
+        protected StatisticData() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="ApiResponse" /> class.
+        /// Initializes a new instance of the <see cref="StatisticData" /> class.
         /// </summary>
-        /// <param name="Data">Data.</param>
-        /// <param name="Errors">Errors.</param>
-        /// <param name="Path">Path.</param>
-        /// <param name="Status">Status (required).</param>
-        public ApiResponse(Object Data = default(Object), List<ApiResponse> Errors = default(List<ApiResponse>), string Path = default(string), ApiResponseStatus Status = default(ApiResponseStatus))
+        /// <param name="OperationId">OperationId.</param>
+        /// <param name="Statistics">Statistics (required).</param>
+        /// <param name="SubscriptionId">SubscriptionId (required).</param>
+        public StatisticData(string OperationId = default(string), List<StatisticValue> Statistics = default(List<StatisticValue>), string SubscriptionId = default(string))
         {
-            // to ensure "Status" is required (not null)
-            if (Status == null)
+            // to ensure "Statistics" is required (not null)
+            if (Statistics == null)
             {
-                throw new InvalidDataException("Status is a required property for ApiResponse and cannot be null");
+                throw new InvalidDataException("Statistics is a required property for StatisticData and cannot be null");
             }
             else
             {
-                this.Status = Status;
+                this.Statistics = Statistics;
             }
-            this.Data = Data;
-            this.Errors = Errors;
-            this.Path = Path;
+            // to ensure "SubscriptionId" is required (not null)
+            if (SubscriptionId == null)
+            {
+                throw new InvalidDataException("SubscriptionId is a required property for StatisticData and cannot be null");
+            }
+            else
+            {
+                this.SubscriptionId = SubscriptionId;
+            }
+            this.OperationId = OperationId;
         }
         
         /// <summary>
-        /// Gets or Sets Data
+        /// Gets or Sets OperationId
         /// </summary>
-        [DataMember(Name="data", EmitDefaultValue=false)]
-        public Object Data { get; set; }
+        [DataMember(Name="operationId", EmitDefaultValue=false)]
+        public string OperationId { get; set; }
 
         /// <summary>
-        /// Gets or Sets Errors
+        /// Gets or Sets Statistics
         /// </summary>
-        [DataMember(Name="errors", EmitDefaultValue=false)]
-        public List<ApiResponse> Errors { get; set; }
+        [DataMember(Name="statistics", EmitDefaultValue=false)]
+        public List<StatisticValue> Statistics { get; set; }
 
         /// <summary>
-        /// Gets or Sets Path
+        /// Gets or Sets SubscriptionId
         /// </summary>
-        [DataMember(Name="path", EmitDefaultValue=false)]
-        public string Path { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Status
-        /// </summary>
-        [DataMember(Name="status", EmitDefaultValue=false)]
-        public ApiResponseStatus Status { get; set; }
+        [DataMember(Name="subscriptionId", EmitDefaultValue=false)]
+        public string SubscriptionId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -89,11 +89,10 @@ namespace Genesys.Statistics.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class ApiResponse {\n");
-            sb.Append("  Data: ").Append(Data).Append("\n");
-            sb.Append("  Errors: ").Append(Errors).Append("\n");
-            sb.Append("  Path: ").Append(Path).Append("\n");
-            sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("class StatisticData {\n");
+            sb.Append("  OperationId: ").Append(OperationId).Append("\n");
+            sb.Append("  Statistics: ").Append(Statistics).Append("\n");
+            sb.Append("  SubscriptionId: ").Append(SubscriptionId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -115,15 +114,15 @@ namespace Genesys.Statistics.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as ApiResponse);
+            return this.Equals(obj as StatisticData);
         }
 
         /// <summary>
-        /// Returns true if ApiResponse instances are equal
+        /// Returns true if StatisticData instances are equal
         /// </summary>
-        /// <param name="other">Instance of ApiResponse to be compared</param>
+        /// <param name="other">Instance of StatisticData to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ApiResponse other)
+        public bool Equals(StatisticData other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -131,24 +130,19 @@ namespace Genesys.Statistics.Model
 
             return 
                 (
-                    this.Data == other.Data ||
-                    this.Data != null &&
-                    this.Data.Equals(other.Data)
+                    this.OperationId == other.OperationId ||
+                    this.OperationId != null &&
+                    this.OperationId.Equals(other.OperationId)
                 ) && 
                 (
-                    this.Errors == other.Errors ||
-                    this.Errors != null &&
-                    this.Errors.SequenceEqual(other.Errors)
+                    this.Statistics == other.Statistics ||
+                    this.Statistics != null &&
+                    this.Statistics.SequenceEqual(other.Statistics)
                 ) && 
                 (
-                    this.Path == other.Path ||
-                    this.Path != null &&
-                    this.Path.Equals(other.Path)
-                ) && 
-                (
-                    this.Status == other.Status ||
-                    this.Status != null &&
-                    this.Status.Equals(other.Status)
+                    this.SubscriptionId == other.SubscriptionId ||
+                    this.SubscriptionId != null &&
+                    this.SubscriptionId.Equals(other.SubscriptionId)
                 );
         }
 
@@ -163,14 +157,12 @@ namespace Genesys.Statistics.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.Data != null)
-                    hash = hash * 59 + this.Data.GetHashCode();
-                if (this.Errors != null)
-                    hash = hash * 59 + this.Errors.GetHashCode();
-                if (this.Path != null)
-                    hash = hash * 59 + this.Path.GetHashCode();
-                if (this.Status != null)
-                    hash = hash * 59 + this.Status.GetHashCode();
+                if (this.OperationId != null)
+                    hash = hash * 59 + this.OperationId.GetHashCode();
+                if (this.Statistics != null)
+                    hash = hash * 59 + this.Statistics.GetHashCode();
+                if (this.SubscriptionId != null)
+                    hash = hash * 59 + this.SubscriptionId.GetHashCode();
                 return hash;
             }
         }
