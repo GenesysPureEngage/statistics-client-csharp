@@ -272,15 +272,9 @@ namespace Genesys.Statistics.Api
         /// <returns></returns>
         public StatisticsApi(String basePath)
         {
-            this.Configuration = new Configuration(new ApiClient(basePath));
+            this.Configuration = new Configuration { BasePath = basePath };
 
             ExceptionFactory = Genesys.Statistics.Client.Configuration.DefaultExceptionFactory;
-
-            // ensure API client has configuration ready
-            if (Configuration.ApiClient.Configuration == null)
-            {
-                this.Configuration.ApiClient.Configuration = this.Configuration;
-            }
         }
 
         /// <summary>
@@ -297,12 +291,6 @@ namespace Genesys.Statistics.Api
                 this.Configuration = configuration;
 
             ExceptionFactory = Genesys.Statistics.Client.Configuration.DefaultExceptionFactory;
-
-            // ensure API client has configuration ready
-            if (Configuration.ApiClient.Configuration == null)
-            {
-                this.Configuration.ApiClient.Configuration = this.Configuration;
-            }
         }
 
         /// <summary>
@@ -351,9 +339,9 @@ namespace Genesys.Statistics.Api
         /// </summary>
         /// <returns>Dictionary of HTTP header</returns>
         [Obsolete("DefaultHeader is deprecated, please use Configuration.DefaultHeader instead.")]
-        public Dictionary<String, String> DefaultHeader()
+        public IDictionary<String, String> DefaultHeader()
         {
-            return this.Configuration.DefaultHeader;
+            return new ReadOnlyDictionary<string, string>(this.Configuration.DefaultHeader);
         }
 
         /// <summary>
@@ -396,7 +384,7 @@ namespace Genesys.Statistics.Api
 
             var localVarPath = "/subscriptions";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -416,7 +404,7 @@ namespace Genesys.Statistics.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (verbose != null) localVarQueryParams.Add("verbose", Configuration.ApiClient.ParameterToString(verbose)); // query parameter
+            if (verbose != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "verbose", verbose)); // query parameter
             if (statistics != null && statistics.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(statistics); // http body (model) parameter
@@ -474,7 +462,7 @@ namespace Genesys.Statistics.Api
 
             var localVarPath = "/subscriptions";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -494,7 +482,7 @@ namespace Genesys.Statistics.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (verbose != null) localVarQueryParams.Add("verbose", Configuration.ApiClient.ParameterToString(verbose)); // query parameter
+            if (verbose != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "verbose", verbose)); // query parameter
             if (statistics != null && statistics.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(statistics); // http body (model) parameter
@@ -549,7 +537,7 @@ namespace Genesys.Statistics.Api
 
             var localVarPath = "/subscriptions/{id}";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -617,7 +605,7 @@ namespace Genesys.Statistics.Api
 
             var localVarPath = "/subscriptions/{id}";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -694,7 +682,7 @@ namespace Genesys.Statistics.Api
 
             var localVarPath = "/statistic-values/{statisticName}";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -715,8 +703,8 @@ namespace Genesys.Statistics.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (statisticName != null) localVarPathParams.Add("statisticName", Configuration.ApiClient.ParameterToString(statisticName)); // path parameter
-            if (objectId != null) localVarQueryParams.Add("objectId", Configuration.ApiClient.ParameterToString(objectId)); // query parameter
-            if (objectType != null) localVarQueryParams.Add("objectType", Configuration.ApiClient.ParameterToString(objectType)); // query parameter
+            if (objectId != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "objectId", objectId)); // query parameter
+            if (objectType != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "objectType", objectType)); // query parameter
 
 
             // make the HTTP request
@@ -774,7 +762,7 @@ namespace Genesys.Statistics.Api
 
             var localVarPath = "/statistic-values/{statisticName}";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -795,8 +783,8 @@ namespace Genesys.Statistics.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (statisticName != null) localVarPathParams.Add("statisticName", Configuration.ApiClient.ParameterToString(statisticName)); // path parameter
-            if (objectId != null) localVarQueryParams.Add("objectId", Configuration.ApiClient.ParameterToString(objectId)); // query parameter
-            if (objectType != null) localVarQueryParams.Add("objectType", Configuration.ApiClient.ParameterToString(objectType)); // query parameter
+            if (objectId != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "objectId", objectId)); // query parameter
+            if (objectType != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "objectType", objectType)); // query parameter
 
 
             // make the HTTP request
@@ -843,7 +831,7 @@ namespace Genesys.Statistics.Api
 
             var localVarPath = "/operations/get-statistic-ex";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -918,7 +906,7 @@ namespace Genesys.Statistics.Api
 
             var localVarPath = "/operations/get-statistic-ex";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -996,7 +984,7 @@ namespace Genesys.Statistics.Api
 
             var localVarPath = "/subscriptions/{id}/statistic-values";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -1017,8 +1005,8 @@ namespace Genesys.Statistics.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
-            if (statisticIds != null) localVarQueryParams.Add("statisticIds", Configuration.ApiClient.ParameterToString(statisticIds)); // query parameter
-            if (verbose != null) localVarQueryParams.Add("verbose", Configuration.ApiClient.ParameterToString(verbose)); // query parameter
+            if (statisticIds != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "statisticIds", statisticIds)); // query parameter
+            if (verbose != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "verbose", verbose)); // query parameter
 
 
             // make the HTTP request
@@ -1070,7 +1058,7 @@ namespace Genesys.Statistics.Api
 
             var localVarPath = "/subscriptions/{id}/statistic-values";
             var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
@@ -1091,8 +1079,8 @@ namespace Genesys.Statistics.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
-            if (statisticIds != null) localVarQueryParams.Add("statisticIds", Configuration.ApiClient.ParameterToString(statisticIds)); // query parameter
-            if (verbose != null) localVarQueryParams.Add("verbose", Configuration.ApiClient.ParameterToString(verbose)); // query parameter
+            if (statisticIds != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "statisticIds", statisticIds)); // query parameter
+            if (verbose != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "verbose", verbose)); // query parameter
 
 
             // make the HTTP request
