@@ -53,12 +53,12 @@ namespace Genesys.Statistics.Client
         public ApiClient()
         {
             Configuration = Genesys.Statistics.Client.Configuration.Default;
-            RestClient = new RestClient("https://gws-usw1.genhtcc.com/statistics/v3");
+            RestClient = new RestClient("http://gws-usw1.genhtcc.com/statistics/v3");
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiClient" /> class
-        /// with default base path (https://gws-usw1.genhtcc.com/statistics/v3).
+        /// with default base path (http://gws-usw1.genhtcc.com/statistics/v3).
         /// </summary>
         /// <param name="config">An instance of Configuration.</param>
         public ApiClient(Configuration config)
@@ -73,7 +73,7 @@ namespace Genesys.Statistics.Client
         /// with default configuration.
         /// </summary>
         /// <param name="basePath">The base path.</param>
-        public ApiClient(String basePath = "https://gws-usw1.genhtcc.com/statistics/v3")
+        public ApiClient(String basePath = "http://gws-usw1.genhtcc.com/statistics/v3")
         {
            if (String.IsNullOrEmpty(basePath))
                 throw new ArgumentException("basePath cannot be empty");
