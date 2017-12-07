@@ -12,7 +12,7 @@ OpenAPI spec version: 9.0.000.00.367
     
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9D3B9C0D-7CBD-4A39-BEE5-E10388598D8D}</ProjectGuid>
+    <ProjectGuid>{F7A1D63E-D684-4540-9039-EF0F2795095F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Genesys.Statistics</RootNamespace>
