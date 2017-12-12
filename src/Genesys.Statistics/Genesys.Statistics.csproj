@@ -4,7 +4,7 @@ Statistics Service
 
 Statistics Service
 
-OpenAPI spec version: 9.0.000.00.367
+OpenAPI spec version: 9.0.000.00.387
 
 -->
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -12,7 +12,7 @@ OpenAPI spec version: 9.0.000.00.367
     
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B534B117-18C9-434F-BB8D-943009F4483C}</ProjectGuid>
+    <ProjectGuid>{0299EEC3-65DA-4407-802B-A9E3BAC28FF6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Genesys.Statistics</RootNamespace>
