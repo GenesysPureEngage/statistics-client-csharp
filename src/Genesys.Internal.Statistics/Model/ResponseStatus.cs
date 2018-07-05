@@ -88,38 +88,40 @@ namespace Genesys.Internal.Statistics.Model
         /// <summary>
         /// Returns true if objects are equal
         /// </summary>
-        /// <param name="input">Object to be compared</param>
+        /// <param name="obj">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object input)
+        public override bool Equals(object obj)
         {
-            return this.Equals(input as ResponseStatus);
+            // credit: http://stackoverflow.com/a/10454552/677735
+            return this.Equals(obj as ResponseStatus);
         }
 
         /// <summary>
         /// Returns true if ResponseStatus instances are equal
         /// </summary>
-        /// <param name="input">Instance of ResponseStatus to be compared</param>
+        /// <param name="other">Instance of ResponseStatus to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ResponseStatus input)
+        public bool Equals(ResponseStatus other)
         {
-            if (input == null)
+            // credit: http://stackoverflow.com/a/10454552/677735
+            if (other == null)
                 return false;
 
             return 
                 (
-                    this.Code == input.Code ||
-                    (this.Code != null &&
-                    this.Code.Equals(input.Code))
+                    this.Code == other.Code ||
+                    this.Code != null &&
+                    this.Code.Equals(other.Code)
                 ) && 
                 (
-                    this.Detail == input.Detail ||
-                    (this.Detail != null &&
-                    this.Detail.Equals(input.Detail))
+                    this.Detail == other.Detail ||
+                    this.Detail != null &&
+                    this.Detail.Equals(other.Detail)
                 ) && 
                 (
-                    this.Message == input.Message ||
-                    (this.Message != null &&
-                    this.Message.Equals(input.Message))
+                    this.Message == other.Message ||
+                    this.Message != null &&
+                    this.Message.Equals(other.Message)
                 );
         }
 
@@ -129,16 +131,18 @@ namespace Genesys.Internal.Statistics.Model
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
+            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                int hashCode = 41;
+                int hash = 41;
+                // Suitable nullity checks etc, of course :)
                 if (this.Code != null)
-                    hashCode = hashCode * 59 + this.Code.GetHashCode();
+                    hash = hash * 59 + this.Code.GetHashCode();
                 if (this.Detail != null)
-                    hashCode = hashCode * 59 + this.Detail.GetHashCode();
+                    hash = hash * 59 + this.Detail.GetHashCode();
                 if (this.Message != null)
-                    hashCode = hashCode * 59 + this.Message.GetHashCode();
-                return hashCode;
+                    hash = hash * 59 + this.Message.GetHashCode();
+                return hash;
             }
         }
 

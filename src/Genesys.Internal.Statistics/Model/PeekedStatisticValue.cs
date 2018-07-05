@@ -111,48 +111,50 @@ namespace Genesys.Internal.Statistics.Model
         /// <summary>
         /// Returns true if objects are equal
         /// </summary>
-        /// <param name="input">Object to be compared</param>
+        /// <param name="obj">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object input)
+        public override bool Equals(object obj)
         {
-            return this.Equals(input as PeekedStatisticValue);
+            // credit: http://stackoverflow.com/a/10454552/677735
+            return this.Equals(obj as PeekedStatisticValue);
         }
 
         /// <summary>
         /// Returns true if PeekedStatisticValue instances are equal
         /// </summary>
-        /// <param name="input">Instance of PeekedStatisticValue to be compared</param>
+        /// <param name="other">Instance of PeekedStatisticValue to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(PeekedStatisticValue input)
+        public bool Equals(PeekedStatisticValue other)
         {
-            if (input == null)
+            // credit: http://stackoverflow.com/a/10454552/677735
+            if (other == null)
                 return false;
 
             return 
                 (
-                    this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
+                    this.Name == other.Name ||
+                    this.Name != null &&
+                    this.Name.Equals(other.Name)
                 ) && 
                 (
-                    this.ObjectId == input.ObjectId ||
-                    (this.ObjectId != null &&
-                    this.ObjectId.Equals(input.ObjectId))
+                    this.ObjectId == other.ObjectId ||
+                    this.ObjectId != null &&
+                    this.ObjectId.Equals(other.ObjectId)
                 ) && 
                 (
-                    this.ObjectType == input.ObjectType ||
-                    (this.ObjectType != null &&
-                    this.ObjectType.Equals(input.ObjectType))
+                    this.ObjectType == other.ObjectType ||
+                    this.ObjectType != null &&
+                    this.ObjectType.Equals(other.ObjectType)
                 ) && 
                 (
-                    this.Timestamp == input.Timestamp ||
-                    (this.Timestamp != null &&
-                    this.Timestamp.Equals(input.Timestamp))
+                    this.Timestamp == other.Timestamp ||
+                    this.Timestamp != null &&
+                    this.Timestamp.Equals(other.Timestamp)
                 ) && 
                 (
-                    this.Value == input.Value ||
-                    (this.Value != null &&
-                    this.Value.Equals(input.Value))
+                    this.Value == other.Value ||
+                    this.Value != null &&
+                    this.Value.Equals(other.Value)
                 );
         }
 
@@ -162,20 +164,22 @@ namespace Genesys.Internal.Statistics.Model
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
+            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                int hashCode = 41;
+                int hash = 41;
+                // Suitable nullity checks etc, of course :)
                 if (this.Name != null)
-                    hashCode = hashCode * 59 + this.Name.GetHashCode();
+                    hash = hash * 59 + this.Name.GetHashCode();
                 if (this.ObjectId != null)
-                    hashCode = hashCode * 59 + this.ObjectId.GetHashCode();
+                    hash = hash * 59 + this.ObjectId.GetHashCode();
                 if (this.ObjectType != null)
-                    hashCode = hashCode * 59 + this.ObjectType.GetHashCode();
+                    hash = hash * 59 + this.ObjectType.GetHashCode();
                 if (this.Timestamp != null)
-                    hashCode = hashCode * 59 + this.Timestamp.GetHashCode();
+                    hash = hash * 59 + this.Timestamp.GetHashCode();
                 if (this.Value != null)
-                    hashCode = hashCode * 59 + this.Value.GetHashCode();
-                return hashCode;
+                    hash = hash * 59 + this.Value.GetHashCode();
+                return hash;
             }
         }
 
