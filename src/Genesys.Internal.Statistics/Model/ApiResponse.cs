@@ -110,45 +110,43 @@ namespace Genesys.Internal.Statistics.Model
         /// <summary>
         /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as ApiResponse);
+            return this.Equals(input as ApiResponse);
         }
 
         /// <summary>
         /// Returns true if ApiResponse instances are equal
         /// </summary>
-        /// <param name="other">Instance of ApiResponse to be compared</param>
+        /// <param name="input">Instance of ApiResponse to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ApiResponse other)
+        public bool Equals(ApiResponse input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
+            if (input == null)
                 return false;
 
             return 
                 (
-                    this.Data == other.Data ||
-                    this.Data != null &&
-                    this.Data.Equals(other.Data)
+                    this.Data == input.Data ||
+                    (this.Data != null &&
+                    this.Data.Equals(input.Data))
                 ) && 
                 (
-                    this.Errors == other.Errors ||
+                    this.Errors == input.Errors ||
                     this.Errors != null &&
-                    this.Errors.SequenceEqual(other.Errors)
+                    this.Errors.SequenceEqual(input.Errors)
                 ) && 
                 (
-                    this.Path == other.Path ||
-                    this.Path != null &&
-                    this.Path.Equals(other.Path)
+                    this.Path == input.Path ||
+                    (this.Path != null &&
+                    this.Path.Equals(input.Path))
                 ) && 
                 (
-                    this.Status == other.Status ||
-                    this.Status != null &&
-                    this.Status.Equals(other.Status)
+                    this.Status == input.Status ||
+                    (this.Status != null &&
+                    this.Status.Equals(input.Status))
                 );
         }
 
@@ -158,20 +156,18 @@ namespace Genesys.Internal.Statistics.Model
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                int hash = 41;
-                // Suitable nullity checks etc, of course :)
+                int hashCode = 41;
                 if (this.Data != null)
-                    hash = hash * 59 + this.Data.GetHashCode();
+                    hashCode = hashCode * 59 + this.Data.GetHashCode();
                 if (this.Errors != null)
-                    hash = hash * 59 + this.Errors.GetHashCode();
+                    hashCode = hashCode * 59 + this.Errors.GetHashCode();
                 if (this.Path != null)
-                    hash = hash * 59 + this.Path.GetHashCode();
+                    hashCode = hashCode * 59 + this.Path.GetHashCode();
                 if (this.Status != null)
-                    hash = hash * 59 + this.Status.GetHashCode();
-                return hash;
+                    hashCode = hashCode * 59 + this.Status.GetHashCode();
+                return hashCode;
             }
         }
 
